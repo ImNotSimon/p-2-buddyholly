@@ -1,21 +1,23 @@
-﻿using UMM;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using HarmonyLib;
+using BepInEx;
 using System.IO;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
 
+
 namespace BuddyHolly
 {
-    [UKPlugin("imnotsimon.BuddyHolly","Buddy Holly for Cerberus Room", "1.0.0", "Replaces the deep droning music in the cerberus room with Buddy Holly by weezer.", true, false)]
-    public class BuddyHolly : UKMod
+    [BepInPlugin("ImNotSimon.BuddyHollyP-2", "Buddy Holly for P-2", "1.1.0")]
+    public class Plugin : BaseUnityPlugin
     {
         private static Harmony harmony;
 
         internal static AssetBundle BuddyHollyAssetBundle;
 
-        public override void OnModLoaded()
+        private void Awake()
         {
             Debug.Log("weezer room starting");
 
@@ -34,12 +36,6 @@ namespace BuddyHolly
         public static string ModPath()
         {
             return Assembly.GetExecutingAssembly().Location.Substring(0, Assembly.GetExecutingAssembly().Location.LastIndexOf(Path.DirectorySeparatorChar));
-        }
-
-        public override void OnModUnload()
-        {
-            harmony.UnpatchSelf();
-            base.OnModUnload();
         }
 
 
